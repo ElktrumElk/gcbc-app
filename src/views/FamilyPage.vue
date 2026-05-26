@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const leaders = ref([
   { id: 1, leaderName: 'Michael Turay', role: 'Pastor' },
@@ -18,10 +18,40 @@ const members = ref([
   { id: 7, memberName: 'Jorgiana Turay', group: 'Childrens Ministry', role: 'Head of Childrens' },
   { id: 8, memberName: 'Cimone Kamara', group: 'Childrens Ministry', role: '...' },
 ])
+
+const cntOpacity = ref(0)
+const trans = ref(60)
+
+onMounted(async () => {
+  requestAnimationFrame(() => {
+    const opa = setInterval(() => {
+      if (cntOpacity.value >= 1) {
+        clearInterval(opa)
+      } else {
+        cntOpacity.value = cntOpacity.value + 0.05
+      }
+    })
+
+    const tran = setInterval(() => {
+      if (trans.value <= 0) {
+        clearInterval(tran)
+      } else {
+        trans.value -= 5
+      }
+    })
+  })
+})
 </script>
 
 <template>
-  <div class="family-cnt">
+  <div
+    class="family-cnt"
+    :style="{
+      transition: 'opacity .1s ease',
+      opacity: cntOpacity,
+      transform: `translateY(${trans}%)`,
+    }"
+  >
     <div class="leader-cnt">
       <span class="title">Leaders</span>
       <div class="leaders-section">
@@ -169,15 +199,20 @@ select[name='filter'] {
   border-radius: 1rem;
   width: 100%;
   transform: scale(1);
-  box-shadow: 0 0 0rem #026a61eb, 0px 0 0rem #02457f;
-  transition: transform 0.4s ease, box-shadow .4s ease;
+  box-shadow:
+    0 0 0rem #026a61eb,
+    0px 0 0rem #02457f;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
   cursor: pointer;
 }
 
 .member-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 2rem #026a61eb, 0px 0 1rem #02457f;
-
+  box-shadow:
+    0 0 2rem #026a61eb,
+    0px 0 1rem #02457f;
 }
 
 .info {

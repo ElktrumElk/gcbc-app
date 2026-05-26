@@ -118,7 +118,27 @@ const deviceWidth = ref(window.screen.width)
 
 @media (min-width: 920px) {
   .slider-wrapper {
-    width: 95%;
+    width: 80%;
+    margin-top: 1rem;
+    box-shadow:
+      0 0 1rem rgba(2, 186, 180, 0.356),
+      0 0 1rem rgba(173, 81, 1, 0.332);
+    border-radius: 1rem;
+    transform: scale(1);
+    transition:
+      box-shadow 0.4s ease,
+      transform 0.4s ease;
+    perspective: 120px;
+  }
+
+  .slider-wrapper:hover {
+    box-shadow:
+      0 0px 10rem rgb(11, 223, 255),
+      0 0px 2rem rgba(255, 250, 246, 0.876);
+
+    transform: scale(0.9);
+
+    animation-play-state: running;
   }
 }
 

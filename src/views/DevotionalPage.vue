@@ -164,6 +164,11 @@ input {
   gap: 1rem;
 }
 
+@media (max-width: 500px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 /* Modern Card Styles */
 .devotional-card {
   display: flex;

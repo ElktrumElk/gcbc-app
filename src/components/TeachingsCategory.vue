@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { datas } from '@/data/teachings'
+import { ref } from 'vue'
 import { truncateText } from '@/lib/truncate'
 interface teachData {
   id: number
@@ -11,7 +12,7 @@ interface teachData {
 }
 
 const { teachings } = datas()
-
+const deviceWidth = ref(window.screen.width)
 const keys = Object.keys(teachings.value)
 </script>
 
@@ -19,6 +20,7 @@ const keys = Object.keys(teachings.value)
   <div class="cnt">
     <div class="sec" v-for="(key, idx) in keys" :key="idx">
       <span class="month">{{ key }}</span>
+      
       <div class="teachings-cnt">
         <div
           class="teachings"
@@ -36,8 +38,18 @@ const keys = Object.keys(teachings.value)
           </div>
           <div class="title-cnt">
             <!-- Applied the character limit truncation function here -->
-            <span>{{ truncateText(data.title, 10) }}</span>
-            <div class="play-cnt">
+            <span
+              :style="{ fontSize: '1.5rem', fontWeight: 'bolder', color: 'rgb(225, 224, 224)' }"
+              >{{ truncateText(data.title, deviceWidth < 920 ? 10 : 300) }}</span
+            >
+            <span :style="{ color: 'GrayText' }" v-if="deviceWidth >= 920"
+              >Teacher: {{ data.teacher }}</span
+            >
+            <div class="t-1">
+              <span>{{ data.date }}</span>
+            </div>
+
+            <div class="play-cnt" v-if="deviceWidth < 920">
               <button><span :style="{ color: 'black' }">Play</span></button>
             </div>
           </div>
@@ -48,6 +60,13 @@ const keys = Object.keys(teachings.value)
 </template>
 
 <style scoped lang="css">
+.t-1 {
+  display: flex;
+  gap: 0.5rem;
+}
+.t-1 span {
+  color: gray;
+}
 .play-cnt {
   display: flex;
   justify-content: space-between;
@@ -127,32 +146,19 @@ const keys = Object.keys(teachings.value)
   flex-direction: column;
   overflow: hidden;
   max-width: 8rem;
+  transform: scale(1);
+  transition: transform 0.2s ease;
 }
 
+.teachings:active {
+  transform: scale(0.9);
+}
 .img-cnt {
   width: 8rem;
   height: 10rem;
   border-radius: 0.4rem;
   overflow: hidden;
   position: relative;
-}
-
-@media (min-width: 920px) {
-  .teachings-cnt {
-    width: 100%;
-    align-self: center;
-    justify-content: space-between;
-  }
-  .teachings {
-    border: 0.5px solid rgb(1, 35, 34);
-    max-width: 20rem;
-    border-radius: 0.2rem;
-    cursor: pointer;
-  }
-  .img-cnt {
-    width: 20rem;
-    height: 20rem;
-  }
 }
 
 .title-cnt {
@@ -167,5 +173,32 @@ const keys = Object.keys(teachings.value)
 .title-cnt span {
   word-break: break-all; /* Ensures even exceptionally long single words break cleanly */
   flex: 0 0 auto;
+}
+
+@media (min-width: 920px) {
+  .teachings-cnt {
+    width: 80%;
+    align-self: center;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .teachings {
+    border: 0.5px solid rgb(1, 35, 34);
+    max-width: 100rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    flex-direction: row;
+    border: none;
+    gap: 1rem;
+  }
+  .img-cnt {
+    width: 50rem;
+    height: 20rem;
+  }
+  .title-cnt {
+    flex-direction: column;
+    gap: 0rem;
+    justify-content: unset;
+  }
 }
 </style>

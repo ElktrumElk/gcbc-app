@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import EventsComponent from '@/components/EventsComponent.vue'
 import HeaderComponent from '@/components/HeaderComponent.vue'
 import recentCard from '@/components/recentCard.vue'
 import TeachingsCategory from '@/components/TeachingsCategory.vue'
@@ -12,6 +13,7 @@ const deviceWidth = ref(window.screen.width)
     <HeaderComponent v-if="deviceWidth < 920" />
     <div class="scroll-view">
       <recentCard />
+      <EventsComponent />
       <TeachingsCategory />
     </div>
   </div>
@@ -38,5 +40,6 @@ const deviceWidth = ref(window.screen.width)
   align-items: center;
   overflow-y: auto;
   overflow-x: hidden;
+  gap: 2rem;
 }
 </style>
