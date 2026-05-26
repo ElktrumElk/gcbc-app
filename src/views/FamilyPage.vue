@@ -160,6 +160,7 @@ select[name='filter'] {
   gap: 1rem;
   align-items: center;
 }
+
 .member-card {
   display: flex;
   gap: 0.5rem;
@@ -167,6 +168,16 @@ select[name='filter'] {
   border: 0.5px solid rgba(5, 63, 75, 0.594);
   border-radius: 1rem;
   width: 100%;
+  transform: scale(1);
+  box-shadow: 0 0 0rem #026a61eb, 0px 0 0rem #02457f;
+  transition: transform 0.4s ease, box-shadow .4s ease;
+  cursor: pointer;
+}
+
+.member-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 2rem #026a61eb, 0px 0 1rem #02457f;
+
 }
 
 .info {
