@@ -10,6 +10,8 @@ const events = ref([
     host: 'Blessing',
     group: 'Youth Group',
     activityType: 'Visitation',
+    thumbnail:
+      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
   },
   {
     id: 2,
@@ -19,6 +21,8 @@ const events = ref([
     host: 'David',
     group: 'Young Adult Group',
     activityType: 'Games Night',
+    thumbnail:
+      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
   },
   {
     id: 3,
@@ -28,6 +32,8 @@ const events = ref([
     host: 'Pastor John',
     group: "Men's Group",
     activityType: 'Fellowship',
+    thumbnail:
+      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
   },
   {
     id: 4,
@@ -37,6 +43,8 @@ const events = ref([
     host: 'Sarah',
     group: "Women's Group",
     activityType: 'Movie Night',
+    thumbnail:
+      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
   },
   {
     id: 5,
@@ -46,6 +54,8 @@ const events = ref([
     host: 'Deacon Michael',
     group: "Men's Group",
     activityType: 'Visitation',
+    thumbnail:
+      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
   },
   {
     id: 6,
@@ -55,6 +65,8 @@ const events = ref([
     host: 'Elijah',
     group: 'Youth Group',
     activityType: 'Worship Night',
+    thumbnail:
+      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
   },
   {
     id: 7,
@@ -64,6 +76,8 @@ const events = ref([
     host: 'Grace',
     group: 'Young Adult Group',
     activityType: 'Discussion',
+    thumbnail:
+      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
   },
   {
     id: 8,
@@ -73,6 +87,8 @@ const events = ref([
     host: 'Sister Mary',
     group: "Women's Group",
     activityType: 'Dinner Celebration',
+    thumbnail:
+      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
   },
   {
     id: 9,
@@ -82,6 +98,8 @@ const events = ref([
     host: 'Blessing',
     group: 'Youth Group',
     activityType: 'Games Night',
+    thumbnail:
+      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
   },
   {
     id: 10,
@@ -91,20 +109,35 @@ const events = ref([
     host: 'The Leadership Team',
     group: 'Young Adult Group',
     activityType: 'Movie Night',
+    thumbnail:
+      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
   },
 ])
 </script>
 
 <template>
   <div class="event-cnt">
+    <h2>Events</h2>
     <div class="scroll-view">
-      <div class="event-card" v-for="(event, idx) in events" :key="idx">
-        <img />
-        <div>
-          <span>{{ event.title }}</span>
-          <span>{{ event.host }}</span>
-          <span>{{ event.group }}</span>
-          <span>{{ event.date }}</span>
+      <div
+        class="event-card"
+        v-for="(event, idx) in events"
+        :key="idx"
+        :style="{ backgroundImage: `url('${event.thumbnail}')` }"
+      >
+        <div class="control">
+          <strong>{{ event.title }}</strong>
+          <div class="cnt-div">
+            <span>Host: {{ event.host }}</span>
+          </div>
+          <div>
+            <button class="play-btn">
+              <span>Play</span>
+            </button>
+            <button class="play-btn">
+              <span>Details</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -115,7 +148,15 @@ const events = ref([
 .event-cnt {
   width: 100%;
   display: flex;
-  padding: 1rem;
+  padding: 1rem 0;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.event-cnt h2 {
+  font-size: 0.9rem;
+  line-height: 0.8rem;
+  color: gray;
 }
 
 .scroll-view {
@@ -123,13 +164,93 @@ const events = ref([
   align-items: center;
   overflow-x: auto;
   gap: 0.5rem;
+  overflow-y: hidden;
 }
 
 .event-card {
-  width: 30rem;
-  height: 30rem;
+  width: 25rem;
+  height: 17rem;
   border-radius: 1rem;
-  border: 1px solid blue;
   flex: 0 0 auto;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transform: scale(1);
+  transition: transform 0.4s ease;
+}
+
+.event-card:active {
+  transform: scale(0.9);
+}
+
+.control {
+  background: linear-gradient(to bottom, transparent 2%, rgba(0, 0, 0, 0.811) 90%);
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem 0.3rem;
+}
+
+.control strong {
+  font-size: 1.2rem;
+  font-weight: bolder;
+}
+.control div:has(button) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-start: 1rem;
+}
+
+.cnt-div {
+  display: flex;
+  width: 100%;
+  gap: 0rem;
+  flex-direction: column;
+}
+
+.cnt-div span {
+  color: rgb(178, 176, 176);
+  text-align: center;
+  flex: 1;
+  align-self: flex-start;
+}
+
+.play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  border-radius: 1rem;
+  border: none;
+  padding: 0.4rem;
+  transform: scale(1);
+  transition: transform 0.4s ease;
+}
+.play-btn span {
+  color: black;
+  font-weight: bolder;
+}
+
+.play-btn:last-child {
+  background-color: rgba(128, 128, 128, 0.301);
+  backdrop-filter: blur(10px);
+}
+.play-btn:last-child span {
+  color: white;
+}
+
+.event-card:has(.play-btn:active) {
+  transform: scale(1);
+}
+
+.play-btn:active {
+  transform: scale(0.9);
 }
 </style>

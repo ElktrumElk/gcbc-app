@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import ProfileImage from '@/subComponents/ProfileImage.vue'
+import { setUserProfile } from '@/context/userProfile'
+</script>
+
 <template>
   <header class="header">
     <div>
@@ -5,9 +10,7 @@
     </div>
 
     <div>
-      <div class="profile-image">
-        <span>G</span>
-      </div>
+      <ProfileImage :handle-profile-display="setUserProfile" />
     </div>
   </header>
 </template>

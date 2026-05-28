@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { handleCloseMovieCnt } from '@/context/general'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
 interface SliderItem {
@@ -70,9 +71,10 @@ const deviceWidth = ref(window.screen.width)
     <!-- Checked dynamic styling block strings -->
     <div
       class="recent-card"
+      @click="() => handleCloseMovieCnt(true)"
       :style="{
         backgroundImage: 'url(' + currentItem.image + ')',
-        height: deviceWidth >= 920 ? '95dvh' : '18rem',
+        height: deviceWidth >= 920 ? '30rem' : '18rem',
       }"
     >
       <div class="card-overlay">
@@ -114,32 +116,6 @@ const deviceWidth = ref(window.screen.width)
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
-}
-
-@media (min-width: 920px) {
-  .slider-wrapper {
-    width: 80%;
-    margin-top: 1rem;
-    box-shadow:
-      0 0 1rem rgba(2, 186, 180, 0.356),
-      0 0 1rem rgba(173, 81, 1, 0.332);
-    border-radius: 1rem;
-    transform: scale(1);
-    transition:
-      box-shadow 0.4s ease,
-      transform 0.4s ease;
-    perspective: 120px;
-  }
-
-  .slider-wrapper:hover {
-    box-shadow:
-      0 0px 10rem rgb(11, 223, 255),
-      0 0px 2rem rgba(255, 250, 246, 0.876);
-
-    transform: scale(0.9);
-
-    animation-play-state: running;
-  }
 }
 
 .recent-card {

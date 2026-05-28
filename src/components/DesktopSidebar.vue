@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import ProfileImage from '@/subComponents/ProfileImage.vue'
+
+defineProps({
+  profileDisplay: null,
+})
+</script>
 <template>
   <aside>
     <h1>GCBC</h1>
@@ -45,25 +52,11 @@
         </div>
       </router-link>
     </nav>
-    <div class="profile-img">
-      <span>M</span>
-    </div>
+    <profile-image :handle-profile-display="profileDisplay" />
   </aside>
 </template>
 
 <style lang="css" scoped>
-.profile-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  background-color: rgb(215, 200, 178);
-}
-
 aside {
   width: 4rem;
   height: 100%;

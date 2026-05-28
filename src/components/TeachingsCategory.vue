@@ -2,6 +2,7 @@
 import { datas } from '@/data/teachings'
 import { ref } from 'vue'
 import { truncateText } from '@/lib/truncate'
+import { handleCloseMovieCnt } from '@/context/general'
 interface teachData {
   id: number
   title: string
@@ -20,10 +21,11 @@ const keys = Object.keys(teachings.value)
   <div class="cnt">
     <div class="sec" v-for="(key, idx) in keys" :key="idx">
       <span class="month">{{ key }}</span>
-      
+
       <div class="teachings-cnt">
         <div
           class="teachings"
+          @click="() => handleCloseMovieCnt(true)"
           v-for="(data, index) in teachings[
             key as keyof typeof teachings
           ] as unknown as teachData[]"
@@ -39,13 +41,17 @@ const keys = Object.keys(teachings.value)
           <div class="title-cnt">
             <!-- Applied the character limit truncation function here -->
             <span
-              :style="{ fontSize: '1.5rem', fontWeight: 'bolder', color: 'rgb(225, 224, 224)' }"
-              >{{ truncateText(data.title, deviceWidth < 920 ? 10 : 300) }}</span
+              :style="{
+                fontSize: deviceWidth < 920 ? '.8rem' : '1.5rem',
+                fontWeight: 'bolder',
+                color: 'rgb(225, 224, 224)',
+              }"
+              >{{ truncateText(data.title, deviceWidth < 920 ? 15 : 300) }}</span
             >
             <span :style="{ color: 'GrayText' }" v-if="deviceWidth >= 920"
               >Teacher: {{ data.teacher }}</span
             >
-            <div class="t-1">
+            <div class="t-1" v-if="deviceWidth >= 920">
               <span>{{ data.date }}</span>
             </div>
 
@@ -127,6 +133,7 @@ const keys = Object.keys(teachings.value)
   display: flex;
   flex-direction: column;
   width: 100%;
+  gap: 1rem;
 }
 
 .month {
@@ -173,6 +180,7 @@ const keys = Object.keys(teachings.value)
 .title-cnt span {
   word-break: break-all; /* Ensures even exceptionally long single words break cleanly */
   flex: 0 0 auto;
+  font-size: 0.8rem;
 }
 
 @media (min-width: 920px) {
