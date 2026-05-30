@@ -1,5 +1,34 @@
 <script setup lang="ts">
-import { showLoginPanel } from '@/context/general'
+import { ref } from 'vue'
+import { setUserLogin, showLoginPanel } from '@/context/general'
+
+const emailInput = ref('')
+const passwordInput = ref('')
+const errorMessage = ref('')
+
+const handleLogin = async (e: SubmitEvent) => {
+  e.preventDefault()
+  errorMessage.value = ''
+
+  try {
+    const res = await fetch('/data/demoDB.json')
+    const database = await res.json()
+
+    const user = database[emailInput.value]
+
+    if (user && user.password === passwordInput.value) {
+      localStorage.setItem('userData', JSON.stringify(user))
+      localStorage.setItem('isLogin', true as unknown as string)
+      setUserLogin(true)
+      showLoginPanel(false)
+    } else {
+      errorMessage.value = 'Invalid email or password'
+      setUserLogin(false)
+    }
+  } catch (e) {
+    errorMessage.value = 'Database connection error' + e
+  }
+}
 </script>
 
 <template>
@@ -22,15 +51,28 @@ import { showLoginPanel } from '@/context/general'
           Please Login before any interaction
         </p>
 
-        <form class="login-form">
+        <p
+          v-if="errorMessage"
+          :style="{ color: 'red', marginBlockEnd: '1rem', fontSize: '0.9rem' }"
+        >
+          {{ errorMessage }}
+        </p>
+
+        <form class="login-form" @submit="(e) => handleLogin(e)">
           <div>
             <label for="user-email">Email</label>
-            <input id="user-email" placeholder="Email" required type="email" />
+            <input id="user-email" v-model="emailInput" placeholder="Email" required type="email" />
           </div>
 
           <div>
             <label for="user-password">Password</label>
-            <input id="user-password" placeholder="password" required type="password" />
+            <input
+              id="user-password"
+              v-model="passwordInput"
+              placeholder="password"
+              required
+              type="password"
+            />
           </div>
 
           <button class="login-btn" type="submit">Login</button>

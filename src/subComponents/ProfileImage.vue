@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { isUserLogin, showLoginPanel } from '@/context/general'
+import { setUserProfile } from '@/context/userProfile'
 
 defineProps({
   handleProfileDisplay: Function,
 })
-
-console.log(isUserLogin.value)
 </script>
 
 <template>
@@ -13,7 +12,7 @@ console.log(isUserLogin.value)
     class="profile-img"
     @click="
       () => {
-        isUserLogin ? handleProfileDisplay?.(true) : showLoginPanel?.(true)
+        isUserLogin ? setUserProfile?.(true) : showLoginPanel?.(true)
       }
     "
   >

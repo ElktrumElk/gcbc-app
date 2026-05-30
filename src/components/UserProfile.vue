@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+//import { userData } from '@/context/general'
 import { computed, ref } from 'vue'
 
 defineProps({
@@ -12,19 +13,30 @@ const handleWidth = computed(() => {
   return deviceWidth.value
 })
 
-//const isVisible = ref(false)
+// // Safely parse the userData profile object from the context layer
+// const userProfile = computed(() => {
+//   if (!userData.value) return null
 
-// const Visibility = computed(() => {
-//   return isVisible.value
+//   if (typeof userData.value === 'string') {
+//     try {
+//       return JSON.parse(userData.value)
+//     } catch {
+//       return null
+//     }
+//   }
+//   return userData.value
 // })
 
-// const handleVisibility = () => {
-//   isVisible.value = !isVisible.value
-// }
+// // Extract the first letter of the full name for the dynamic profile avatar badge
+// const avatarInitial = computed(() => {
+//   return userProfile.value?.fullname?.charAt(0).toUpperCase() || 'U'
+// })
 </script>
 
 <template>
+  <!-- Control dialog rendering via the Visibility prop state -->
   <dialog
+    v-if="Visibility"
     class="profile-wrapper"
     :style="
       handleWidth >= 920
@@ -37,17 +49,17 @@ const handleWidth = computed(() => {
         : {}
     "
   >
-    <button class="cls-button" v-on:click="() => handleVisibility?.(false)">
+    <button class="cls-button" @click="() => handleVisibility?.(false)">
       <span>Close</span>
     </button>
     <div class="profile-card">
       <div class="cnt">
         <div class="profile-img">
-          <span>M</span>
+          <span></span>
         </div>
         <div class="profile-info">
           <div class="profile-header">
-            <strong>Michael Turay</strong>
+            <strong></strong>
             <span class="role">Pastor</span>
           </div>
           <span class="grp">Group: Mens Ministry</span>
@@ -56,7 +68,13 @@ const handleWidth = computed(() => {
 
       <section class="contact">
         <div>
-          <strong>Email: <span>Michael@GCBC.com</span></strong>
+          <strong>Email: <span></span></strong>
+        </div>
+        <div>
+          <strong>Username: <span></span></strong>
+        </div>
+        <div>
+          <strong>Age: <span></span></strong>
         </div>
         <div>
           <strong>Phone: <span>+23277458679</span></strong>
