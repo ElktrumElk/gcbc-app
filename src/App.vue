@@ -8,6 +8,7 @@ import MovieCard from './components/MovieCard.vue'
 import { closeMovieCnt } from './context/general.ts'
 
 const deviceWidth = ref(window.screen.width)
+
 </script>
 
 <template>

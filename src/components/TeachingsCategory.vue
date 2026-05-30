@@ -2,7 +2,7 @@
 import { datas } from '@/data/teachings'
 import { ref } from 'vue'
 import { truncateText } from '@/lib/truncate'
-import { handleCloseMovieCnt } from '@/context/general'
+import { handleCloseMovieCnt, setMovieCardData, type movie } from '@/context/general'
 interface teachData {
   id: number
   title: string
@@ -25,7 +25,17 @@ const keys = Object.keys(teachings.value)
       <div class="teachings-cnt">
         <div
           class="teachings"
-          @click="() => handleCloseMovieCnt(true)"
+          @click="
+            () => {
+              handleCloseMovieCnt(true)
+              setMovieCardData({
+                title: data.title,
+                date: data.date,
+                duration: data.duration,
+                thumbnail: data.image,
+              } as movie)
+            }
+          "
           v-for="(data, index) in teachings[
             key as keyof typeof teachings
           ] as unknown as teachData[]"

@@ -1,5 +1,7 @@
 <script lang="ts" setup>
+/**The Movie card is a panel where the movie or video and it details are displayed */
 import { handleCloseMovieCnt } from '@/context/general'
+import { movieCardData } from '@/context/general'
 </script>
 
 <template>
@@ -9,17 +11,17 @@ import { handleCloseMovieCnt } from '@/context/general'
     </button>
 
     <div class="vid-cnt">
-      <video controls>
-        <source src="" />
+      <video controls :poster="movieCardData?.thumbnail">
+        <source src="../assets/video/power_of_love.mp4" />
       </video>
     </div>
     <div>
-      <h1>The Power of Love</h1>
+      <h1>{{ movieCardData?.title }}</h1>
     </div>
     <div class="info-cnt">
-      <span class="time">35:45</span>
-      <span class="time">Nov 20 2025</span>
-      <span class="time">245 MB</span>
+      <span class="time">{{ movieCardData?.duration }}</span>
+      <span class="time">{{ movieCardData?.date }}</span>
+      <span class="time">{{ movieCardData?.size }}</span>
     </div>
     <div class="comment-div">
       <span
@@ -37,6 +39,28 @@ import { handleCloseMovieCnt } from '@/context/general'
         <span>Send</span>
       </button>
     </div>
+
+    <section class="song-sec">
+      <h2>Songs</h2>
+      <ol>
+        <li>
+          <span>Tenki ya</span>
+          <span>View Lyrics</span>
+        </li>
+        <li>
+          <span>Hope of the world</span>
+          <span>View Lyrics</span>
+        </li>
+        <li>
+          <span>Beautiful Name</span>
+          <span>View Lyrics</span>
+        </li>
+        <li>
+          <span>Onward Christian Soldier</span>
+          <span>View Lyrics</span>
+        </li>
+      </ol>
+    </section>
   </dialog>
 </template>
 
@@ -98,14 +122,30 @@ import { handleCloseMovieCnt } from '@/context/general'
 .vid-cnt {
   width: 100%;
   overflow: hidden;
-  border: 0.5px solid rgba(1, 138, 145, 0.492);
+  border: 0.5px solid rgba(1, 138, 145, 0.243);
   overflow: hidden;
   border-radius: 1rem;
+  height: 20rem;
 }
 
 .movie-cnt video {
   width: 100%;
+  height: 100%;
+  max-height: 20rem;
+  object-fit: cover;
 }
+
+@media (max-width: 500px) {
+  .vid-cnt {
+    max-height: 15rem;
+  }
+}
+
+.movie-cnt video source {
+  width: 100%;
+  object-fit: contain;
+}
+
 h1 {
   font-size: 1.5rem;
 }
@@ -132,5 +172,43 @@ h1 {
   background-color: black;
   border: none;
   border-radius: 0.5rem;
+}
+
+.song-sec {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block-start: 1rem;
+  gap: 1rem;
+}
+
+.song-sec h2 {
+  font-size: 1rem;
+  line-height: 1rem;
+  color: gray;
+  align-self: flex-start;
+}
+
+.song-sec ol {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0rem 1rem;
+  gap: 0.5rem;
+}
+
+.song-sec ol li {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(5, 99, 139, 0.452);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.song-sec ol li span:last-child {
+  color: rgb(0, 157, 255);
+  cursor: pointer;
 }
 </style>

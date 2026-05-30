@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { handleCloseMovieCnt, setMovieCardData, type movie } from '@/context/general'
+
 import { datas } from '@/data/teachings'
 import { truncateText } from '@/lib/truncate'
 import { ref, computed } from 'vue'
@@ -24,6 +26,8 @@ const searchData = computed(() => {
     teaching.title.toLowerCase().includes(searchQuery.value.toLowerCase()),
   )
 })
+
+
 </script>
 
 <template>
@@ -36,7 +40,22 @@ const searchData = computed(() => {
     </header>
 
     <div class="scoll-view">
-      <div class="t" v-for="(data, idx) in searchData" :key="idx">
+      <div
+        class="t"
+        v-for="(data, idx) in searchData"
+        :key="idx"
+        @click="
+          () => {
+            handleCloseMovieCnt(true)
+            setMovieCardData({
+              title: data.title,
+              duration: data.duration,
+              date: data.date,
+              thumbnail: data.image,
+            } as movie)
+          }
+        "
+      >
         <div class="img-cnt">
           <img
             :src="data.image"

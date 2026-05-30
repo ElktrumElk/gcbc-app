@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { handleCloseMovieCnt, setMovieCardData, type movie } from '@/context/general'
 import { ref } from 'vue'
 
 const events = ref([
@@ -120,6 +121,17 @@ const events = ref([
     <h2>Events</h2>
     <div class="scroll-view">
       <div
+        @click="
+          () => {
+            handleCloseMovieCnt(true)
+            setMovieCardData({
+              title: event.title,
+              duration: event.duration,
+              date: event.date,
+              thumbnail: event.thumbnail,
+            } as movie)
+          }
+        "
         class="event-card"
         v-for="(event, idx) in events"
         :key="idx"

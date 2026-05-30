@@ -1,15 +1,13 @@
-import type { AnyRecord } from 'dns'
-
-export interface component {
-  props: AnyRecord<unknown, CallableFunction>
+export interface Component {
+  props: string | boolean | unknown[] | Record<string, unknown>
 }
 
 interface comp {
-  prop: string | boolean | [] | unknown
-  component: component
+  prop: string | boolean | unknown[] | Record<string, unknown>
+  component: Component
 }
 
-export function useComponent({ component, prop }: comp): [component, unknown] {
+export function useComponent({ component, prop }: comp): [Component, unknown] {
   component.props = prop
 
   console.log(component.props)
