@@ -52,11 +52,22 @@ defineProps({
         </div>
       </router-link>
     </nav>
-    <profile-image :handle-profile-display="profileDisplay" />
+    <div class="profile-cnt">
+      <profile-image :handle-profile-display="profileDisplay" />
+    </div>
   </aside>
 </template>
 
 <style lang="css" scoped>
+.profile-cnt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-block-start: auto;
+  margin-block-end: 4rem;
+}
 aside {
   width: 4rem;
   height: 100%;
@@ -71,7 +82,7 @@ aside h1 {
 nav {
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 80;
   flex-direction: column;
   align-items: center;
   gap: 1rem;

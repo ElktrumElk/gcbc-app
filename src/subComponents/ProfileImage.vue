@@ -1,11 +1,22 @@
 <script setup lang="ts">
+import { isUserLogin, showLoginPanel } from '@/context/general'
+
 defineProps({
   handleProfileDisplay: Function,
 })
+
+console.log(isUserLogin.value)
 </script>
 
 <template>
-  <div class="profile-img" @click="() => handleProfileDisplay?.(true)">
+  <div
+    class="profile-img"
+    @click="
+      () => {
+        isUserLogin ? handleProfileDisplay?.(true) : showLoginPanel?.(true)
+      }
+    "
+  >
     <span>M</span>
   </div>
 </template>
@@ -22,5 +33,6 @@ defineProps({
   color: white;
   background-color: rgb(215, 200, 178);
   cursor: pointer;
+  flex: 0 0 auto;
 }
 </style>

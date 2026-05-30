@@ -5,10 +5,10 @@ import { ref } from 'vue'
 import UserProfile from './components/UserProfile.vue'
 import { setUserProfile, isUserProfile } from './context/userProfile.ts'
 import MovieCard from './components/MovieCard.vue'
-import { closeMovieCnt } from './context/general.ts'
+import { closeMovieCnt, loginPanel } from './context/general.ts'
+import LoginComponent from './components/LoginComponent.vue'
 
 const deviceWidth = ref(window.screen.width)
-
 </script>
 
 <template>
@@ -19,6 +19,7 @@ const deviceWidth = ref(window.screen.width)
     <MovieCard v-if="deviceWidth < 920 && closeMovieCnt" />
     <MovieCard v-if="deviceWidth >= 920" />
     <MobileFooter v-if="deviceWidth < 920" />
+    <LoginComponent v-if="loginPanel" />
   </div>
 </template>
 
