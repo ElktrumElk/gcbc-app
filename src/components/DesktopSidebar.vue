@@ -66,7 +66,7 @@ defineProps({
   justify-content: center;
 
   margin-block-start: auto;
-  margin-block-end: 4rem;
+  margin-block-end: 1rem;
 }
 aside {
   width: 4rem;

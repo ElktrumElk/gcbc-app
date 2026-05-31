@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { showLoginPanel } from '@/context/general'
+import { loginValidation } from '@/context/LoginValidation'
 import { ref } from 'vue'
-import { setUserLogin, showLoginPanel } from '@/context/general'
 
 const emailInput = ref('')
 const passwordInput = ref('')
@@ -10,24 +11,11 @@ const handleLogin = async (e: SubmitEvent) => {
   e.preventDefault()
   errorMessage.value = ''
 
-  try {
-    const res = await fetch('/data/demoDB.json')
-    const database = await res.json()
-
-    const user = database[emailInput.value]
-
-    if (user && user.password === passwordInput.value) {
-      localStorage.setItem('userData', JSON.stringify(user))
-      localStorage.setItem('isLogin', true as unknown as string)
-      setUserLogin(true)
-      showLoginPanel(false)
-    } else {
-      errorMessage.value = 'Invalid email or password'
-      setUserLogin(false)
-    }
-  } catch (e) {
-    errorMessage.value = 'Database connection error' + e
-  }
+  loginValidation({
+    emailInput: emailInput,
+    passwordInput: passwordInput,
+    errorMessage: errorMessage,
+  })
 }
 </script>
 

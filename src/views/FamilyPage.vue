@@ -172,7 +172,7 @@ input[type='search'] {
   border-radius: 1rem;
   width: 100%;
   padding: 0.5rem;
-  border: 0.5px solid rgba(5, 63, 75, 0.594);
+  border: var(--global-border-cl);
   outline: none;
 }
 
@@ -195,7 +195,7 @@ select[name='filter'] {
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem;
-  border: 0.5px solid rgba(5, 63, 75, 0.594);
+  border: var(--global-border-cl);
   border-radius: 1rem;
   width: 100%;
   transform: scale(1);

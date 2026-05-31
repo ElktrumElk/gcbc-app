@@ -5,6 +5,8 @@
     "fullname": "Elkanah Cole",
     "age": "19",
     "password": "24681012",
-    "email": "festinacole@gmail.com"
+    "email": "festinacole@gmail.com",
+    "role": "Member",
+    "contact": "+23276413626"
   }
 }

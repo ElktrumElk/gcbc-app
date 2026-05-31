@@ -2,6 +2,11 @@
 /**The Movie card is a panel where the movie or video and it details are displayed */
 import { handleCloseMovieCnt } from '@/context/general'
 import { movieCardData } from '@/context/general'
+import { useRerender } from '@/custome/render-vue'
+
+const lyrics = ['Tenki ya', 'Hope of The world', 'Beautiful Name', 'Onward Christian Soldier']
+const [isLyricsShown, setLyrics] = useRerender<boolean>(false)
+const [targetLyricsCard, handleTargetLyricsCard] = useRerender<number | null>(null)
 </script>
 
 <template>
@@ -23,6 +28,7 @@ import { movieCardData } from '@/context/general'
       <span class="time">{{ movieCardData?.date }}</span>
       <span class="time">{{ movieCardData?.size }}</span>
     </div>
+
     <div class="comment-div">
       <span
         :style="{
@@ -43,21 +49,23 @@ import { movieCardData } from '@/context/general'
     <section class="song-sec">
       <h2>Songs</h2>
       <ol>
-        <li>
-          <span>Tenki ya</span>
-          <span>View Lyrics</span>
-        </li>
-        <li>
-          <span>Hope of the world</span>
-          <span>View Lyrics</span>
-        </li>
-        <li>
-          <span>Beautiful Name</span>
-          <span>View Lyrics</span>
-        </li>
-        <li>
-          <span>Onward Christian Soldier</span>
-          <span>View Lyrics</span>
+        <li class="song-card" v-for="(song, idx) in lyrics" :key="idx">
+          <div class="song-a">
+            <span>{{ song }}</span>
+            <span
+              @click="
+                (e) => {
+                  handleTargetLyricsCard(idx)
+                  setLyrics(!isLyricsShown)
+                }
+              "
+              >{{ targetLyricsCard === idx && isLyricsShown ? 'Hide Lyrics' : 'View Lyrics' }}</span
+            >
+          </div>
+
+          <div class="lyrics-cnt" v-if="targetLyricsCard === idx && isLyricsShown">
+            <p>Lyrics not Available</p>
+          </div>
         </li>
       </ol>
     </section>
@@ -106,8 +114,16 @@ import { movieCardData } from '@/context/general'
   display: flex;
   flex-direction: column;
   border: none;
-  padding: 1rem;
+  padding: 1rem 0rem;
   gap: 0.2rem;
+}
+
+.movie-cnt div,
+.movie-cnt section {
+  padding: 0.5rem;
+}
+.movie-cnt div:first-child {
+  padding: 0;
 }
 
 @media (min-width: 920px) {
@@ -124,7 +140,7 @@ import { movieCardData } from '@/context/general'
   overflow: hidden;
   border: 0.5px solid rgba(1, 138, 145, 0.243);
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: 0rem;
   height: 20rem;
 }
 
@@ -194,7 +210,6 @@ h1 {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0rem 1rem;
   gap: 0.5rem;
 }
 
@@ -203,12 +218,25 @@ h1 {
   border-radius: 1rem;
   background: rgba(5, 99, 139, 0.452);
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: height 0.4s ease;
+}
+
+.song-card .song-a {
+  display: flex;
   justify-content: space-between;
-  align-items: center;
+  width: 100%;
 }
 
 .song-sec ol li span:last-child {
   color: rgb(0, 157, 255);
   cursor: pointer;
+}
+
+.lyrics-cnt {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 </style>

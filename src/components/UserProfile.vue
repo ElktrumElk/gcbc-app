@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-//import { userData } from '@/context/general'
+import { handleLogout, userProfile } from '@/context/general'
 import { computed, ref } from 'vue'
 
 defineProps({
@@ -13,30 +13,15 @@ const handleWidth = computed(() => {
   return deviceWidth.value
 })
 
-// // Safely parse the userData profile object from the context layer
-// const userProfile = computed(() => {
-//   if (!userData.value) return null
-
-//   if (typeof userData.value === 'string') {
-//     try {
-//       return JSON.parse(userData.value)
-//     } catch {
-//       return null
-//     }
-//   }
-//   return userData.value
-// })
-
-// // Extract the first letter of the full name for the dynamic profile avatar badge
-// const avatarInitial = computed(() => {
-//   return userProfile.value?.fullname?.charAt(0).toUpperCase() || 'U'
-// })
+//Extract the first letter of the full name for the dynamic profile avatar badge
+const avatarInitial = computed(() => {
+  return userProfile.value?.fullname?.charAt(0).toUpperCase() || 'U'
+})
 </script>
 
 <template>
   <!-- Control dialog rendering via the Visibility prop state -->
   <dialog
-    v-if="Visibility"
     class="profile-wrapper"
     :style="
       handleWidth >= 920
@@ -55,12 +40,12 @@ const handleWidth = computed(() => {
     <div class="profile-card">
       <div class="cnt">
         <div class="profile-img">
-          <span></span>
+          <span>{{ avatarInitial }}</span>
         </div>
         <div class="profile-info">
           <div class="profile-header">
-            <strong></strong>
-            <span class="role">Pastor</span>
+            <strong>{{ userProfile.username }}</strong>
+            <span class="role">{{ userProfile.role }}</span>
           </div>
           <span class="grp">Group: Mens Ministry</span>
         </div>
@@ -68,21 +53,24 @@ const handleWidth = computed(() => {
 
       <section class="contact">
         <div>
-          <strong>Email: <span></span></strong>
+          <strong
+            >Email: <span>{{ userProfile.email }}</span></strong
+          >
         </div>
         <div>
-          <strong>Username: <span></span></strong>
+          <strong
+            >Fullname: <span>{{ userProfile.fullname }}</span></strong
+          >
         </div>
         <div>
-          <strong>Age: <span></span></strong>
-        </div>
-        <div>
-          <strong>Phone: <span>+23277458679</span></strong>
+          <strong
+            >Phone: <span>{{ userProfile.contact }}</span></strong
+          >
         </div>
       </section>
 
       <section>
-        <button>
+        <button @click="() => handleLogout()">
           <span>Logout</span>
         </button>
       </section>

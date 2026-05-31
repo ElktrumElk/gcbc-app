@@ -159,20 +159,15 @@ input {
 }
 
 .cards-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 
-@media (max-width: 500px) {
-  .cards-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
 /* Modern Card Styles */
 .devotional-card {
   display: flex;
-  flex-direction: column;
+  width: 100%;
   border-radius: 1rem;
   overflow: hidden;
   box-shadow:
@@ -182,6 +177,7 @@ input {
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
+  border: none;
 }
 
 .devotional-card:active {
@@ -189,15 +185,14 @@ input {
 }
 
 .img-cnt {
-  width: 100%;
-  aspect-ratio: 16 / 10; /* Elegant rectangular cut instead of standard square */
+  width: auto;
   background-color: #090909;
   overflow: hidden;
 }
 
 .img-cnt img {
-  width: 100%;
-  height: 100%;
+  width: 5rem;
+  height: 5rem;
   object-fit: cover;
 }
 
