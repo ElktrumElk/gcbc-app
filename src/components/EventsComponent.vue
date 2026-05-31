@@ -180,7 +180,8 @@ const events = ref([
 }
 
 .event-card {
-  width: 25rem;
+  width: 80%;
+  max-width: 400px;
   height: 17rem;
   border-radius: 1rem;
   flex: 0 0 auto;

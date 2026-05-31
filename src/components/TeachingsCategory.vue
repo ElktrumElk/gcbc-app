@@ -42,7 +42,6 @@ const keys = Object.keys(teachings.value)
           :key="index"
         >
           <div class="img-cnt">
-            <span class="duration">{{ data.duration }}</span>
             <img
               :src="data.image"
               :style="{ objectFit: 'cover', width: '100%', height: '100%', border: '0px' }"
