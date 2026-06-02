@@ -63,3 +63,8 @@ export const handleUserData = () => {
 export const [isAlert, setAlert] = useRerender<boolean>(false)
 // message of the alert
 export const [alertMessage, setAlertMessage] = useRerender<string>('')
+
+// settings panel
+export const [isSetting, showSetting] = useRerender(false)
+
+

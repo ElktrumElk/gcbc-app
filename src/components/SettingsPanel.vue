@@ -1,14 +1,20 @@
 <script lang="ts" setup>
+import { showSetting } from '@/context/general'
 import { useRerender } from '@/custome/render-vue'
 
 const [isLightMode, setLightMode] = useRerender<boolean>(false)
 const handleLightmode = () => {
   setLightMode(!isLightMode.value)
+  if (isLightMode.value) {
+    document.body.classList.add('light')
+  } else {
+    document.body.classList.remove('light')
+  }
 }
 </script>
 
 <template>
-  <div class="bg">
+  <div class="bg" @click="(e) => e.target === e.currentTarget && showSetting?.(false)">
     <div class="setting-dialog">
       <div class="header">
         <h1>Settings</h1>

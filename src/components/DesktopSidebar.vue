@@ -101,6 +101,9 @@ nav div {
   gap: 0.1rem;
   align-items: center;
 }
+nav div span {
+  color: gray !important;
+}
 
 @media (max-width: 920px) {
   aside {

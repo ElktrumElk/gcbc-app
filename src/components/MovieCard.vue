@@ -18,7 +18,6 @@ const sendMessage = () => {
     showLoginPanel?.(true)
   }
 }
-
 </script>
 
 <template>
@@ -124,7 +123,7 @@ const sendMessage = () => {
   height: 100dvh;
   max-width: 600px;
   position: absolute;
-  background: rgb(8, 8, 8);
+  background: var(--global-bg);
   display: flex;
   flex-direction: column;
   border: none;

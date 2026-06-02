@@ -72,7 +72,7 @@ onMounted(async () => {
 .event-cnt h2 {
   font-size: 0.9rem;
   line-height: 0.8rem;
-  color: gray;
+  color: gray !important;
 }
 
 .scroll-view {
@@ -117,6 +117,7 @@ onMounted(async () => {
 .control strong {
   font-size: 1.2rem;
   font-weight: bolder;
+  color: white !important;
 }
 .control div:has(button) {
   display: flex;
@@ -133,7 +134,7 @@ onMounted(async () => {
 }
 
 .cnt-div span {
-  color: rgb(178, 176, 176);
+  color: rgb(178, 176, 176) !important;
   text-align: center;
   flex: 1;
   align-self: flex-start;
@@ -151,7 +152,7 @@ onMounted(async () => {
   transition: transform 0.4s ease;
 }
 .play-btn span {
-  color: black;
+  color: black !important;
   font-weight: bolder;
 }
 
@@ -160,7 +161,7 @@ onMounted(async () => {
   backdrop-filter: blur(10px);
 }
 .play-btn:last-child span {
-  color: white;
+  color: white !important;
 }
 
 .event-card:has(.play-btn:active) {

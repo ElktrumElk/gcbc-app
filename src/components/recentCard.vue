@@ -150,7 +150,7 @@ const deviceWidth = ref(window.screen.width)
 
 .category-badge {
   align-self: flex-start;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.95) !important;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -170,7 +170,7 @@ const deviceWidth = ref(window.screen.width)
 }
 
 .movie-title {
-  color: #ffffff;
+  color: #ffffff !important;
   margin: 0;
   font-size: 1.75rem;
   font-weight: 800;
@@ -224,7 +224,7 @@ const deviceWidth = ref(window.screen.width)
 
 .btn-details {
   background-color: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+  color: #ffffff !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.2);

@@ -5,7 +5,7 @@ import { ref } from 'vue'
 import UserProfile from './components/UserProfile.vue'
 import { setUserProfile, isUserProfile } from './context/userProfile.ts'
 import MovieCard from './components/MovieCard.vue'
-import { closeMovieCnt, isAlert, loginPanel } from './context/general.ts'
+import { closeMovieCnt, isAlert, isSetting, loginPanel } from './context/general.ts'
 import LoginComponent from './components/LoginComponent.vue'
 import AlertPanel from './components/AlertPanel.vue'
 import SettingsPanel from './components/SettingsPanel.vue'
@@ -15,7 +15,6 @@ const deviceWidth = ref(window.screen.width)
 
 <template>
   <div class="app">
-    <AlertPanel v-if="isAlert" />
     <DesktopSidebar v-if="deviceWidth >= 920" :profile-display="setUserProfile" />
     <UserProfile v-if="isUserProfile" :handle-visibility="setUserProfile" />
     <router-view v-slot="{ Component }">
@@ -27,7 +26,12 @@ const deviceWidth = ref(window.screen.width)
     <MovieCard v-if="deviceWidth >= 920" />
     <MobileFooter v-if="deviceWidth < 920" />
     <LoginComponent v-if="loginPanel" />
-    <SettingsPanel />
+    
+    <KeepAlive>
+      <SettingsPanel v-if="isSetting" />
+    </KeepAlive>
+
+    <AlertPanel v-if="isAlert" />
   </div>
 </template>
 

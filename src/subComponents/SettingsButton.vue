@@ -1,5 +1,9 @@
+<script setup lang="ts">
+import { showSetting } from '@/context/general'
+</script>
+
 <template>
-  <button class="setting-button">
+  <button class="setting-button" @click="() => showSetting?.(true)">
     <img
       src="https://img.icons8.com/?size=100&id=364&format=png&color=7a7a7a"
       width="30px"
