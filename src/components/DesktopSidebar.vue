@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { isUserLogin, showLoginPanel } from '@/context/general'
 import ProfileImage from '@/subComponents/ProfileImage.vue'
+import SettingsButton from '@/subComponents/SettingsButton.vue'
 
 defineProps({
   profileDisplay: null,
@@ -57,6 +58,7 @@ defineProps({
       </router-link>
     </nav>
     <div class="profile-cnt">
+      <settings-button />
       <profile-image :handle-profile-display="profileDisplay" />
     </div>
   </aside>
@@ -68,7 +70,7 @@ defineProps({
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  gap: 1rem;
   margin-block-start: auto;
   margin-block-end: 1rem;
 }

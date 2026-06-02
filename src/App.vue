@@ -8,6 +8,7 @@ import MovieCard from './components/MovieCard.vue'
 import { closeMovieCnt, isAlert, loginPanel } from './context/general.ts'
 import LoginComponent from './components/LoginComponent.vue'
 import AlertPanel from './components/AlertPanel.vue'
+import SettingsPanel from './components/SettingsPanel.vue'
 
 const deviceWidth = ref(window.screen.width)
 </script>
@@ -26,6 +27,7 @@ const deviceWidth = ref(window.screen.width)
     <MovieCard v-if="deviceWidth >= 920" />
     <MobileFooter v-if="deviceWidth < 920" />
     <LoginComponent v-if="loginPanel" />
+    <SettingsPanel />
   </div>
 </template>
 
