@@ -103,9 +103,11 @@ onMounted(async () => {
   gap: 1rem;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 0.1rem;
+  padding: 1rem;
   padding-inline-start: 0.8rem;
   padding-inline-end: auto;
+  background-color: var(--global-component-bg-a);
+  border-radius: 1.5rem;
 }
 
 .leader-box {
@@ -196,12 +198,11 @@ select[name='filter'] {
   gap: 0.5rem;
   padding: 0.5rem;
   border: var(--global-border-cl);
+  background: var(--global-component-bg-a);
   border-radius: 1rem;
   width: 100%;
   transform: scale(1);
-  box-shadow:
-    0 0 0rem #026a61eb,
-    0px 0 0rem #02457f;
+  box-shadow: var(--member-card-box-shadow);
   transition:
     transform 0.4s ease,
     box-shadow 0.4s ease;
@@ -210,9 +211,7 @@ select[name='filter'] {
 
 .member-card:hover {
   transform: scale(1.05);
-  box-shadow:
-    0 0 2rem #026a61eb,
-    0px 0 1rem #02457f;
+  box-shadow: var(--member-card-box-shadow-hover);
 }
 
 .info {

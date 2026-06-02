@@ -53,7 +53,7 @@ const handleLightmode = () => {
 }
 
 .setting-dialog {
-  width: 95%;
+  width: 100%;
   max-width: 500px;
   padding: 1rem;
   background: var(--global-component-bg);
@@ -62,6 +62,9 @@ const handleLightmode = () => {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  position: absolute;
+  bottom: 0;
+  min-height: 50rem;
 }
 .setting-dialog .header {
   display: flex;

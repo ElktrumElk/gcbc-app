@@ -185,10 +185,12 @@ h1 {
 .comment-div {
   margin-block-start: 1rem;
   display: flex;
-  width: 100%;
+  width: 96%;
+  align-self: center;
   padding: 1rem;
   border-radius: 1rem;
-  background-color: rgba(4, 68, 87, 0.452);
+  background-color: var(--global-component-bg-a);
+  box-shadow: 0 0 1rem rgb(232, 238, 238);
 }
 
 .comment-div input {
@@ -203,6 +205,9 @@ h1 {
   background-color: black;
   border: none;
   border-radius: 0.5rem;
+}
+.comment-div button span {
+  color: white !important;
 }
 
 .song-sec {
@@ -231,7 +236,7 @@ h1 {
 .song-sec ol li {
   padding: 1rem;
   border-radius: 1rem;
-  background: rgba(5, 99, 139, 0.452);
+  background: var(--global-component-bg-a);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

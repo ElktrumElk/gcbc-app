@@ -6,8 +6,8 @@ import { showSetting } from '@/context/general'
   <button class="setting-button" @click="() => showSetting?.(true)">
     <img
       src="https://img.icons8.com/?size=100&id=364&format=png&color=7a7a7a"
-      width="30px"
-      height="30px"
+      width="20px"
+      height="20px"
     />
   </button>
 </template>

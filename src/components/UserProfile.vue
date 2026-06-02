@@ -110,7 +110,7 @@ const avatarInitial = computed(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgb(19, 19, 19);
+  background: var(--global-component-bg);
   border: 0.5px solid rgb(1, 35, 34);
   transform: scale(1);
   transition: transform 0.4s ease;
@@ -130,7 +130,7 @@ const avatarInitial = computed(() => {
   gap: 0.5rem;
   border-radius: 1rem;
   border: 0.5px solid rgb(1, 35, 34);
-  background-color: rgb(19, 19, 19);
+  background: var(--global-component-bg);
 }
 
 .cnt {
@@ -151,6 +151,9 @@ const avatarInitial = computed(() => {
   background: rgb(4, 46, 62);
 }
 
+.profile-img span {
+  color: white !important;
+}
 .profile-info {
   display: flex;
   flex-direction: column;
@@ -166,14 +169,19 @@ const avatarInitial = computed(() => {
   align-items: center;
 }
 
+.profile-header strong {
+  font-weight: bolder;
+  font-size: 1.1rem;
+}
+
 .role {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.1rem 0.9rem;
-  background: rgba(2, 63, 71, 0.468);
+  background: var(--global-component-bg-b);
   color: rgb(181, 174, 174);
-  border: 0.5px solid rgb(1, 35, 34);
+  border: 0.5px solid rgba(41, 43, 43, 0.089);
   border-radius: 0.4rem;
 }
 
@@ -188,7 +196,10 @@ const avatarInitial = computed(() => {
   flex-direction: column;
   width: 100%;
   margin-block-start: 1rem;
-  gap: 1rem;
+  gap: 0.5rem;
+  background-color: var(--global-component-bg-b);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .contact > div {
@@ -197,7 +208,7 @@ const avatarInitial = computed(() => {
   padding: 0.3rem;
   border-radius: 0.5rem;
   width: 100%;
-  background-color: rgba(38, 38, 38, 0.769);
+  background-color: var(--global-component-bg-b);
 }
 
 section:has(button) {
