@@ -64,7 +64,7 @@ const handleLightmode = () => {
   gap: 1rem;
   position: absolute;
   bottom: 0;
-  min-height: 50rem;
+  height: 90%;
 }
 .setting-dialog .header {
   display: flex;
