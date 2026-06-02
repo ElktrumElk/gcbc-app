@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ProfileImage from '@/subComponents/ProfileImage.vue'
 import { setUserProfile } from '@/context/userProfile'
+import SettingsButton from '@/subComponents/SettingsButton.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import { setUserProfile } from '@/context/userProfile'
     </div>
 
     <div>
+      <SettingsButton />
       <ProfileImage :handle-profile-display="setUserProfile" />
     </div>
   </header>
