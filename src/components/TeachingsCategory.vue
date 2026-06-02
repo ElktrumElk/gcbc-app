@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { datas } from '@/data/teachings'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { truncateText } from '@/lib/truncate'
 import { handleCloseMovieCnt, setMovieCardData, type movie } from '@/context/general'
+import { fetchPost } from '@/data/fetchpost'
+
+import { useRerender } from '@/custome/render-vue'
+import TeachingsSkeleton from '@/subComponents/TeachingsSkeleton.vue'
+
 interface teachData {
   id: number
   title: string
@@ -12,13 +16,24 @@ interface teachData {
   duration: string
 }
 
-const { teachings } = datas()
 const deviceWidth = ref(window.screen.width)
-const keys = Object.keys(teachings.value)
+const [teachings, setTeachings] = useRerender({})
+const keys = ref<string[]>([])
+
+onMounted(async () => {
+  const id = setTimeout(async () => {
+    const data = await fetchPost()
+    setTeachings(data)
+    keys.value = Object.keys(teachings.value)
+  }, 1000)
+
+  return () => clearTimeout(id)
+})
 </script>
 
 <template>
-  <div class="cnt">
+  <TeachingsSkeleton v-if="keys?.length === 0" />
+  <div class="cnt" v-if="keys.length !== 0">
     <div class="sec" v-for="(key, idx) in keys" :key="idx">
       <span class="month">{{ key }}</span>
 
@@ -192,6 +207,7 @@ const keys = Object.keys(teachings.value)
   font-size: 0.8rem;
 }
 
+
 @media (min-width: 920px) {
   .teachings-cnt {
     width: 80%;
@@ -217,5 +233,7 @@ const keys = Object.keys(teachings.value)
     gap: 0rem;
     justify-content: unset;
   }
+
+ 
 }
 </style>

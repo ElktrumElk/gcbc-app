@@ -1,0 +1,15 @@
+.skeleton-animation-1 {
+  background: linear-gradient(to right, #25242436 20%, rgba(72, 72, 72, 0.473) 40%, #1f1f1f36 45%);
+  background-color: rgba(55, 55, 55, 0.324);
+  background-repeat: no-repeat;
+  animation: skeleton 1s linear infinite;
+}
+
+@keyframes skeleton {
+  from {
+    background-position: -200px;
+  }
+  to {
+    background-position: 200px;
+  }
+}

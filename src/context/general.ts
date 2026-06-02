@@ -1,6 +1,7 @@
 import { useRerender } from '@/custome/render-vue'
 import { computed } from 'vue'
 import { setUserProfile } from './userProfile'
+import gAlert from '@/extras/alert'
 
 export interface movie {
   title: string
@@ -28,7 +29,13 @@ export const [userData, getUserData] = useRerender<UserData | string | null>(
 )
 
 export const userProfile = computed(() => {
-  if (!userData.value) return null
+  if (!userData.value) {
+    gAlert?.('Invalid User please login')
+    showLoginPanel?.(true)
+    setUserLogin?.(false)
+    setUserProfile(false)
+    return null
+  }
 
   if (typeof userData.value === 'string') {
     try {
@@ -45,8 +52,14 @@ export const handleLogout = () => {
   setUserProfile?.(false)
   setUserLogin(false)
   getUserData(null)
+  gAlert('User Logout.')
 }
 
 export const handleUserData = () => {
   getUserData(localStorage.getItem('userData') || null)
 }
+
+// triggered the alert component
+export const [isAlert, setAlert] = useRerender<boolean>(false)
+// message of the alert
+export const [alertMessage, setAlertMessage] = useRerender<string>('')

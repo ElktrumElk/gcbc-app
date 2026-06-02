@@ -44,8 +44,8 @@ const avatarInitial = computed(() => {
         </div>
         <div class="profile-info">
           <div class="profile-header">
-            <strong>{{ userProfile.username }}</strong>
-            <span class="role">{{ userProfile.role }}</span>
+            <strong>{{ userProfile?.username }}</strong>
+            <span class="role">{{ userProfile?.role }}</span>
           </div>
           <span class="grp">Group: Mens Ministry</span>
         </div>
@@ -54,17 +54,17 @@ const avatarInitial = computed(() => {
       <section class="contact">
         <div>
           <strong
-            >Email: <span>{{ userProfile.email }}</span></strong
+            >Email: <span>{{ userProfile?.email }}</span></strong
           >
         </div>
         <div>
           <strong
-            >Fullname: <span>{{ userProfile.fullname }}</span></strong
+            >Fullname: <span>{{ userProfile?.fullname }}</span></strong
           >
         </div>
         <div>
           <strong
-            >Phone: <span>{{ userProfile.contact }}</span></strong
+            >Phone: <span>{{ userProfile?.contact }}</span></strong
           >
         </div>
       </section>

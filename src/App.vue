@@ -5,17 +5,23 @@ import { ref } from 'vue'
 import UserProfile from './components/UserProfile.vue'
 import { setUserProfile, isUserProfile } from './context/userProfile.ts'
 import MovieCard from './components/MovieCard.vue'
-import { closeMovieCnt, loginPanel } from './context/general.ts'
+import { closeMovieCnt, isAlert, loginPanel } from './context/general.ts'
 import LoginComponent from './components/LoginComponent.vue'
+import AlertPanel from './components/AlertPanel.vue'
 
 const deviceWidth = ref(window.screen.width)
 </script>
 
 <template>
   <div class="app">
+    <AlertPanel v-if="isAlert" />
     <DesktopSidebar v-if="deviceWidth >= 920" :profile-display="setUserProfile" />
     <UserProfile v-if="isUserProfile" :handle-visibility="setUserProfile" />
-    <router-view />
+    <router-view v-slot="{ Component }">
+      <KeepAlive :exclude="['SearchPage']">
+        <component :is="Component" />
+      </KeepAlive>
+    </router-view>
     <MovieCard v-if="deviceWidth < 920 && closeMovieCnt" />
     <MovieCard v-if="deviceWidth >= 920" />
     <MobileFooter v-if="deviceWidth < 920" />

@@ -1,12 +1,24 @@
 <script lang="ts" setup>
 /**The Movie card is a panel where the movie or video and it details are displayed */
-import { handleCloseMovieCnt } from '@/context/general'
+import { handleCloseMovieCnt, isUserLogin, showLoginPanel } from '@/context/general'
 import { movieCardData } from '@/context/general'
 import { useRerender } from '@/custome/render-vue'
+import { ref } from 'vue'
 
 const lyrics = ['Tenki ya', 'Hope of The world', 'Beautiful Name', 'Onward Christian Soldier']
 const [isLyricsShown, setLyrics] = useRerender<boolean>(false)
 const [targetLyricsCard, handleTargetLyricsCard] = useRerender<number | null>(null)
+
+const inp = ref('')
+const sendMessage = () => {
+  if (isUserLogin.value) {
+    inp.value = ''
+    alert(`Message send: ${inp.value}`)
+  } else {
+    showLoginPanel?.(true)
+  }
+}
+
 </script>
 
 <template>
@@ -40,8 +52,10 @@ const [targetLyricsCard, handleTargetLyricsCard] = useRerender<number | null>(nu
           marginInlineEnd: '1rem',
         }"
       ></span>
-      <input placeholder="Ask question" />
-      <button>
+
+      <input placeholder="Ask question" v-model="inp" />
+
+      <button :style="{ padding: '.4rem 1rem', flex: '0 0 auto' }" @click="sendMessage">
         <span>Send</span>
       </button>
     </div>
@@ -116,6 +130,8 @@ const [targetLyricsCard, handleTargetLyricsCard] = useRerender<number | null>(nu
   border: none;
   padding: 1rem 0rem;
   gap: 0.2rem;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .movie-cnt div,
@@ -142,6 +158,7 @@ const [targetLyricsCard, handleTargetLyricsCard] = useRerender<number | null>(nu
   overflow: hidden;
   border-radius: 0rem;
   height: 20rem;
+  flex: 0 0 auto;
 }
 
 .movie-cnt video {
@@ -184,7 +201,6 @@ h1 {
   outline: none;
 }
 .comment-div button {
-  width: 40px;
   background-color: black;
   border: none;
   border-radius: 0.5rem;

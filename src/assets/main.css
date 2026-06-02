@@ -29,7 +29,7 @@
   height: 100%;
   overflow: hidden;
   width: 100%;
-  max-width: 2000px;
+
   align-self: center;
 }
 
@@ -39,6 +39,15 @@ a,
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
   padding: 3px;
+}
+.t-i-s-d-2 {
+  display: none;
+}
+.skel-cnt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100% !important;
 }
 
 @media (max-width: 920px) {
@@ -53,5 +62,32 @@ a,
 
   *::-webkit-scrollbar {
     display: none;
+  }
+}
+@media (min-width: 920px) {
+  .teachings-skeleton-cnt-desktop {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 80%;
+  }
+  .teachings-skeleton-desktop {
+    max-width: 50rem !important;
+    width: auto !important;
+    height: auto !important;
+    flex-direction: row !important;
+  }
+
+  .teachings-img-skeleton-desktop {
+    width: 50rem !important;
+    height: 20rem !important;
+  }
+
+  .teachings-info-skeleton-desktop {
+    margin-block-start: 1rem;
+    padding: 1rem 0rem;
+  }
+  .t-i-s-d-2 {
+    display: flex;
   }
 }

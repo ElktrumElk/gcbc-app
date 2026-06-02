@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { isUserLogin, showLoginPanel } from '@/context/general'
 import ProfileImage from '@/subComponents/ProfileImage.vue'
 
 defineProps({
@@ -41,7 +42,10 @@ defineProps({
           <span>Devo</span>
         </div>
       </router-link>
-      <router-link to="/family">
+      <router-link
+        :to="isUserLogin ? '/family' : '/home'"
+        @click="!isUserLogin && showLoginPanel?.(true)"
+      >
         <div>
           <img
             src="https://img.icons8.com/?size=100&id=6884&format=png&color=7a7a7a"

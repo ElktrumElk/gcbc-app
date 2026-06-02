@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { showLoginPanel } from '@/context/general'
 import { loginValidation } from '@/context/LoginValidation'
+import { useRerender } from '@/custome/render-vue'
 import { ref } from 'vue'
 
 const emailInput = ref('')
@@ -17,6 +18,8 @@ const handleLogin = async (e: SubmitEvent) => {
     errorMessage: errorMessage,
   })
 }
+
+const [isSignUp, setSignUp] = useRerender<boolean>(false)
 </script>
 
 <template>
@@ -29,24 +32,33 @@ const handleLogin = async (e: SubmitEvent) => {
     "
   >
     <div class="login-invs-cnt">
-      <div class="login-cnt">
+      <div class="login-cnt" :style="{ height: isSignUp ? '37rem' : '25rem' }">
         <div class="log-header">
           <h2>GCBC</h2>
-          <span class="sign-up">Sign up</span>
+          <button @click="() => setSignUp(!isSignUp)" class="sign-up">
+            {{ isSignUp ? 'Login' : 'Sign Up' }}
+          </button>
         </div>
-        <h3>Login</h3>
+        <h3>{{ isSignUp ? 'Sign Up' : 'Login' }}</h3>
         <p :style="{ color: 'gray', marginBlockEnd: '1rem' }">
-          Please Login before any interaction
-        </p>
-
-        <p
-          v-if="errorMessage"
-          :style="{ color: 'red', marginBlockEnd: '1rem', fontSize: '0.9rem' }"
-        >
-          {{ errorMessage }}
+          {{
+            isSignUp
+              ? 'Please Fill in the inputs to continue'
+              : 'Please login to perform any interaction'
+          }}
         </p>
 
         <form class="login-form" @submit="(e) => handleLogin(e)">
+          <div v-if="isSignUp">
+            <label for="user-fullname">Fullname</label>
+            <input id="user-fullname" placeholder="Fullname" required type="text" />
+          </div>
+
+          <div v-if="isSignUp">
+            <label for="user-name">Username</label>
+            <input id="user-name" placeholder="Username" required type="text" />
+          </div>
+
           <div>
             <label for="user-email">Email</label>
             <input id="user-email" v-model="emailInput" placeholder="Email" required type="email" />
@@ -63,7 +75,7 @@ const handleLogin = async (e: SubmitEvent) => {
             />
           </div>
 
-          <button class="login-btn" type="submit">Login</button>
+          <button class="login-btn" type="submit">{{ isSignUp ? 'Sign Up' : 'Login' }}</button>
         </form>
       </div>
     </div>
@@ -83,6 +95,7 @@ const handleLogin = async (e: SubmitEvent) => {
   padding: 0.2rem 0.8rem;
   border-radius: 0.4rem;
   border: 0.5px solid rgba(3, 196, 255, 0.458);
+  background: none;
 }
 
 .sign-up:hover {
@@ -122,6 +135,9 @@ h2 {
   background: rgba(41, 40, 40, 1);
   border: none;
   width: 100%;
+  height: 10rem;
+  transition: height 0.4s ease;
+  overflow: hidden;
 }
 
 .login-form {
@@ -130,6 +146,7 @@ h2 {
   align-items: center;
   width: 100%;
   gap: 1rem;
+  margin-block-start: auto;
 }
 
 .login-form * {
@@ -151,6 +168,7 @@ h2 {
   border: 0.5px solid rgba(3, 196, 255, 0.458);
   border-radius: 0.8rem;
   outline: none;
+  font-size: 1rem;
 }
 
 .login-form button[type='submit'] {

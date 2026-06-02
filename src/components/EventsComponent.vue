@@ -1,123 +1,27 @@
 <script setup lang="ts">
 import { handleCloseMovieCnt, setMovieCardData, type movie } from '@/context/general'
-import { ref } from 'vue'
+import { useRerender } from '@/custome/render-vue'
+import { fetchEvents } from '@/data/fetchEvents'
+import EventsSkeleton from '@/subComponents/EventsSkeleton.vue'
+import { onMounted } from 'vue'
 
-const events = ref([
-  {
-    id: 1,
-    title: "Youth Visitation at Blessing's",
-    date: 'November 10 2025',
-    duration: '1:35',
-    host: 'Blessing',
-    group: 'Youth Group',
-    activityType: 'Visitation',
-    thumbnail:
-      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
-  },
-  {
-    id: 2,
-    title: 'Young Adult Games Night & Trivia',
-    date: 'November 14 2025',
-    duration: '2:30',
-    host: 'David',
-    group: 'Young Adult Group',
-    activityType: 'Games Night',
-    thumbnail:
-      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
-  },
-  {
-    id: 3,
-    title: "Men's Breakfast & Fellowship",
-    date: 'November 18 2025',
-    duration: '2:00',
-    host: 'Pastor John',
-    group: "Men's Group",
-    activityType: 'Fellowship',
-    thumbnail:
-      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
-  },
-  {
-    id: 4,
-    title: "Women's Movie Night: Inspiring Faith",
-    date: 'November 22 2025',
-    duration: '2:15',
-    host: 'Sarah',
-    group: "Women's Group",
-    activityType: 'Movie Night',
-    thumbnail:
-      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
-  },
-  {
-    id: 5,
-    title: 'Hospital & Elderly Home Visitation',
-    date: 'December 02 2025',
-    duration: '3:00',
-    host: 'Deacon Michael',
-    group: "Men's Group",
-    activityType: 'Visitation',
-    thumbnail:
-      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
-  },
-  {
-    id: 6,
-    title: 'Youth Outdoor Bonfire & Worship',
-    date: 'December 06 2025',
-    duration: '3:30',
-    host: 'Elijah',
-    group: 'Youth Group',
-    activityType: 'Worship Night',
-    thumbnail:
-      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
-  },
-  {
-    id: 7,
-    title: 'Young Adult Career & Coffee Hangout',
-    date: 'December 12 2025',
-    duration: '1:45',
-    host: 'Grace',
-    group: 'Young Adult Group',
-    activityType: 'Discussion',
-    thumbnail:
-      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
-  },
-  {
-    id: 8,
-    title: "Women's Year-End Gala Dinner",
-    date: 'December 19 2025',
-    duration: '4:00',
-    host: 'Sister Mary',
-    group: "Women's Group",
-    activityType: 'Dinner Celebration',
-    thumbnail:
-      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
-  },
-  {
-    id: 9,
-    title: 'Youth End of Year Games Tournament',
-    date: 'December 28 2025',
-    duration: '5:00',
-    host: 'Blessing',
-    group: 'Youth Group',
-    activityType: 'Games Night',
-    thumbnail:
-      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
-  },
-  {
-    id: 10,
-    title: 'Combined Holiday Movie Marathon',
-    date: 'January 03 2026',
-    duration: '3:15',
-    host: 'The Leadership Team',
-    group: 'Young Adult Group',
-    activityType: 'Movie Night',
-    thumbnail:
-      'https://images.trvl-media.com/place/3000458394/c30027e8-6c12-43ec-bddc-bc30f971cb29.jpg',
-  },
-])
+const [events, setEvent] = useRerender<
+  [{ title: string; duration: string; date: string; thumbnail: string; host: string }] | []
+>([])
+
+onMounted(async () => {
+  const data = await fetchEvents()
+  const id = setTimeout(() => {
+    setEvent(data)
+  }, 1000)
+
+  return () => clearTimeout(id)
+})
 </script>
 
 <template>
-  <div class="event-cnt">
+  <EventsSkeleton v-if="events.length === 0" />
+  <div class="event-cnt" v-if="events.length !== 0">
     <h2>Events</h2>
     <div class="scroll-view">
       <div

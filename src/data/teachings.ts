@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import { fetchPost } from './fetchpost'
 
 export const datas = () => {
   const teachings = ref({
@@ -80,4 +81,10 @@ export const datas = () => {
   })
 
   return { teachings }
+}
+
+export const d = async () => {
+  const teach = ref(await fetchPost())
+
+  return { teach }
 }
