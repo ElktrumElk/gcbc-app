@@ -29,7 +29,7 @@
   height: 100%;
   overflow: hidden;
   width: 100%;
-
+  backdrop-filter: blur(20px);
   align-self: center;
 }
 

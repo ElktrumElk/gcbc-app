@@ -24,10 +24,22 @@ export const [closeMovieCnt, handleCloseMovieCnt] = useRerender(false)
 export const [isUserLogin, setUserLogin] = useRerender(localStorage.getItem('isLogin') || false)
 export const [loginPanel, showLoginPanel] = useRerender<boolean>(false)
 
+// user prefere color mode ================================
+export const [isLightMode, setLightMode] = useRerender<boolean>(false)
+export const handleLightmode = () => {
+  setLightMode(!isLightMode.value)
+  if (isLightMode.value) {
+    document.body.classList.add('light')
+  } else {
+    document.body.classList.remove('light')
+  }
+}
+//============================================================
+
 export const [userData, getUserData] = useRerender<UserData | string | null>(
   localStorage.getItem('userData') || null,
 )
-
+// return th profile of the user
 export const userProfile = computed(() => {
   if (!userData.value) {
     gAlert?.('Invalid User please login')
@@ -47,6 +59,7 @@ export const userProfile = computed(() => {
   return userData.value
 })
 
+// LOGOUT =============================================================
 export const handleLogout = () => {
   localStorage.clear()
   setUserProfile?.(false)
@@ -54,6 +67,8 @@ export const handleLogout = () => {
   getUserData(null)
   gAlert('User Logout.')
 }
+// ==================================================================
+
 
 export const handleUserData = () => {
   getUserData(localStorage.getItem('userData') || null)

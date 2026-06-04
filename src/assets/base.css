@@ -5,13 +5,18 @@
   --theme: rgb(215, 200, 178);
   --global-component-bg: rgb(20, 19, 19);
   --global-border-cl: 1px solid rgba(0, 166, 255, 0.221);
+  --global-border-cl-b: 1px solid rgba(7, 70, 104, 0.439);
+
   --global-txt-cl: white;
   --global-txt-cl-b: rgb(232, 232, 233);
-  --global-bg: rgb(8, 8, 8);
-  --global-component-bg-a: rgba(14, 14, 14, 1);
+  --global-bg: rgb(0, 0, 0);
+  --global-component-bg-a: rgb(14, 14, 14);
   --global-component-bg-b: rgb(0, 0, 0);
+  --global-component-bg-c: rgb(0, 7, 9);
   --member-card-box-shadow: 0 0 0rem #026a61eb, 0px 0 0rem #02457f;
   --member-card-box-shadow-hover: 0 0 2rem #026a61eb, 0px 0 1rem #02457f;
+  --global-header-footer-bg: black;
+  --global-component-max-width: 700px;
 }
 
 *,
@@ -28,9 +33,13 @@ body.light {
   --global-bg: whitesmoke;
   --global-component-bg-a: white;
   --global-component-bg-b: whitesmoke;
+  --global-component-bg-c: rgb(241, 237, 237);
+
   --member-card-box-shadow: 0 0 0rem #ebebebeb, 0px 0 0rem #b2dbff;
   --member-card-box-shadow-hover: 0 0 2rem #ebebebeb, 0px 0 1rem #b2dbff;
   --global-border-cl: 1px solid rgba(0, 166, 255, 0.401);
+  --global-border-cl-b: 1px solid rgba(0, 166, 255, 0.272);
+  --global-header-footer-bg: white;
 }
 
 body {
@@ -38,6 +47,8 @@ body {
   height: 100dvh;
   color: var(--color-text);
   background: var(--global-bg);
+  background-size: cover;
+
   transition:
     color 0.5s,
     background-color 0.5s;

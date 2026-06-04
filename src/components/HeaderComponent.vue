@@ -28,6 +28,7 @@ import AnoucementButton from '@/subComponents/AnoucementButton.vue'
   align-items: center;
   font-size: 0.8rem;
   color: black;
+ 
 }
 .header div {
   display: flex;

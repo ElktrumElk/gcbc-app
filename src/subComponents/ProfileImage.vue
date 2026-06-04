@@ -1,14 +1,27 @@
 <script setup lang="ts">
 import { isUserLogin, showLoginPanel } from '@/context/general'
 import { avatarInitial, setUserProfile } from '@/context/userProfile'
+import type { CSSProperties } from 'vue'
 
-defineProps({
-  handleProfileDisplay: Function,
-})
+interface profile {
+  width?: string
+  height?: string
+  color?: string
+  background?: string
+  styles?: CSSProperties
+}
+defineProps<profile>()
 </script>
 
 <template>
   <div
+    :style="{
+      width: width,
+      color: color,
+      background: background,
+      height: height,
+      ...(styles as CSSProperties),
+    }"
     class="profile-img"
     @click="
       () => {

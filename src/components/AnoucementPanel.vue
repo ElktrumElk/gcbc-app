@@ -91,7 +91,7 @@ const handleRead = (idx: number) => {
 
 .anoucement-cnt {
   width: 100%;
-  max-width: 600px;
+  max-width: var(--global-component-max-width);
   height: 90%;
   position: absolute;
   bottom: -4px;

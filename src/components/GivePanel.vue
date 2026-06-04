@@ -14,6 +14,7 @@ const inp = ref<string[]>([])
 
 const handlePaymentInp = () => splitNumber(inp)
 
+
 const handleGive = () => {
   if (!isUserLogin.value) {
     showLoginPanel?.(true)

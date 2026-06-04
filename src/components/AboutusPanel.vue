@@ -33,7 +33,7 @@ import { setAboutusPanel } from '@/context/general'
 
 .article {
   width: 100%;
-  max-width: 600px;
+  max-width: var(--global-component-max-width);
   height: 90%;
   position: absolute;
   bottom: 0;

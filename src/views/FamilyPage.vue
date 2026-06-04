@@ -197,7 +197,7 @@ select[name='filter'] {
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem;
-  background: var(--global-component-bg-a);
+  background: none;
   border-radius: 1rem;
   width: 100%;
   transform: scale(1);
