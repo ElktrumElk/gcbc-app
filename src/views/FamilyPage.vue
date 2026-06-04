@@ -189,7 +189,7 @@ select[name='filter'] {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+
   align-items: center;
 }
 
@@ -197,12 +197,14 @@ select[name='filter'] {
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem;
-  border: var(--global-border-cl);
   background: var(--global-component-bg-a);
   border-radius: 1rem;
   width: 100%;
   transform: scale(1);
   box-shadow: var(--member-card-box-shadow);
+  border-block-end: var(--global-border-cl);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
   transition:
     transform 0.4s ease,
     box-shadow 0.4s ease;

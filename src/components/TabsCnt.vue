@@ -1,10 +1,14 @@
+<script setup lang="ts">
+import { setAboutusPanel, setGivePanel } from '@/context/general'
+</script>
+
 <template>
   <div class="tab-cnt">
     <div></div>
 
     <div class="btn-cnt">
-      <button>Give</button>
-      <button>About us</button>
+      <button @click="() => setGivePanel?.(true)">Give</button>
+      <button @click="() => setAboutusPanel?.(true)">About us</button>
     </div>
   </div>
 </template>

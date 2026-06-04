@@ -32,7 +32,7 @@ const handleLightmode = () => {
                 transition: 'background .2s ease',
               }"
             >
-              <div class="toggle-ctr"></div>
+              <div class="toggle-ctr" :style="{ background: isLightMode ? '#000' : '#fff' }"></div>
             </div>
           </li>
         </ul>
@@ -73,6 +73,9 @@ const handleLightmode = () => {
   width: 100%;
 }
 
+.header h1 {
+  font-size: 1.1rem;
+}
 .scroll-view {
   width: 100%;
   display: flex;

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { isUserLogin, showLoginPanel } from '@/context/general'
+import AnoucementButton from '@/subComponents/AnoucementButton.vue'
 import ProfileImage from '@/subComponents/ProfileImage.vue'
 import SettingsButton from '@/subComponents/SettingsButton.vue'
 
@@ -58,6 +59,7 @@ defineProps({
       </router-link>
     </nav>
     <div class="profile-cnt">
+      <anoucement-button />
       <settings-button />
       <profile-image :handle-profile-display="profileDisplay" />
     </div>

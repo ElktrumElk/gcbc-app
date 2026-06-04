@@ -18,7 +18,6 @@ import { ref, computed, type ComputedRef, type Ref } from 'vue'
 export function useRerender<T = unknown>(
   initialValue: T,
 ): readonly [ComputedRef<T>, (newValue: T, cb?: (val: T) => void) => void] {
-  
   const __init_value: Ref<T> = ref(initialValue) as Ref<T>
 
   const __updatedValue = computed<T>(() => {

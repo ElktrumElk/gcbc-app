@@ -132,7 +132,7 @@ h2 {
   padding: 1rem;
   border-radius: 1rem;
   align-items: center;
-  background: rgba(41, 40, 40, 1);
+  background: var(--global-component-bg-a);
   border: none;
   width: 100%;
   height: 10rem;

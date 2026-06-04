@@ -93,8 +93,17 @@ const sendMessage = () => {
   border: 1px solid rgba(0, 119, 128, 0.682);
   border-radius: 1rem;
   align-self: flex-end;
-  margin-block-end: 0.5rem;
+  margin-block-start: 1rem;
+  margin-inline-end: 1rem;
+  background: #03030395;
+  backdrop-filter: blur(10px);
+  position: fixed;
 }
+
+.cls-btn span {
+  color: white !important;
+}
+
 .info-cnt {
   width: 100%;
   display: flex;
@@ -153,11 +162,10 @@ const sendMessage = () => {
 .vid-cnt {
   width: 100%;
   overflow: hidden;
-  border: 0.5px solid rgba(1, 138, 145, 0.243);
   overflow: hidden;
-  border-radius: 0rem;
   height: 20rem;
   flex: 0 0 auto;
+  padding: 0 !important;
 }
 
 .movie-cnt video {

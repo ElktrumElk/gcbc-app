@@ -24,6 +24,13 @@ import { showSetting } from '@/context/general'
   cursor: pointer;
   transform: scale(1);
   transition: transform 0.4s ease;
+  background-color: rgba(80, 79, 79, 0);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0px 0rem 0rem gray,
+    inset 0px 0px 0.4rem rgba(129, 129, 129, 0.535);
+  border-radius: 4rem;
+  color: #eeeeee;
 }
 
 .setting-button:active {

@@ -53,11 +53,11 @@ onDeactivated(() => {
   padding: 0.5rem 1rem;
   border-radius: 2rem;
   width: auto;
-  max-width: 300px;
-  background: rgba(41, 40, 40, 1);
+  max-width: 400px;
+  background: var(--global-component-bg-a);
   border: var(--global-border-cl);
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   overflow: hidden;
 }
 
@@ -76,5 +76,10 @@ onDeactivated(() => {
   height: 20px;
   border: 1px solid green;
   border-radius: 1rem;
+  flex: 0 0 auto;
+}
+
+.alert-msg {
+  line-height: 18px;
 }
 </style>

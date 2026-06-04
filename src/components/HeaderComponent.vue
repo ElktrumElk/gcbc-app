@@ -2,17 +2,19 @@
 import ProfileImage from '@/subComponents/ProfileImage.vue'
 import { setUserProfile } from '@/context/userProfile'
 import SettingsButton from '@/subComponents/SettingsButton.vue'
+import AnoucementButton from '@/subComponents/AnoucementButton.vue'
 </script>
 
 <template>
   <header class="header">
     <div>
+      <ProfileImage :handle-profile-display="setUserProfile" />
       <h1>GCBC</h1>
     </div>
 
     <div>
+      <AnoucementButton />
       <SettingsButton />
-      <ProfileImage :handle-profile-display="setUserProfile" />
     </div>
   </header>
 </template>
@@ -30,6 +32,7 @@ import SettingsButton from '@/subComponents/SettingsButton.vue'
 .header div {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .profile-image {

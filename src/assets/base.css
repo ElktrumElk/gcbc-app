@@ -8,7 +8,7 @@
   --global-txt-cl: white;
   --global-txt-cl-b: rgb(232, 232, 233);
   --global-bg: rgb(8, 8, 8);
-  --global-component-bg-a: rgba(14, 14, 14, 0.915);
+  --global-component-bg-a: rgba(14, 14, 14, 1);
   --global-component-bg-b: rgb(0, 0, 0);
   --member-card-box-shadow: 0 0 0rem #026a61eb, 0px 0 0rem #02457f;
   --member-card-box-shadow-hover: 0 0 2rem #026a61eb, 0px 0 1rem #02457f;

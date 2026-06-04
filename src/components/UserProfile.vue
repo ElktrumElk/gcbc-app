@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { handleLogout, userProfile } from '@/context/general'
 import { computed, ref } from 'vue'
-
+import { avatarInitial } from '@/context/userProfile'
 defineProps({
   Visibility: Boolean,
   handleVisibility: Function,
@@ -11,11 +11,6 @@ const deviceWidth = ref(window.screen.width)
 
 const handleWidth = computed(() => {
   return deviceWidth.value
-})
-
-//Extract the first letter of the full name for the dynamic profile avatar badge
-const avatarInitial = computed(() => {
-  return userProfile.value?.fullname?.charAt(0).toUpperCase() || 'U'
 })
 </script>
 

@@ -67,4 +67,39 @@ export const [alertMessage, setAlertMessage] = useRerender<string>('')
 // settings panel
 export const [isSetting, showSetting] = useRerender(false)
 
+// Anoucement panel
+export const [isAnoucement, showAnoucement] = useRerender(false)
 
+// About us Panel
+export const [isAboutusPanel, setAboutusPanel] = useRerender(false)
+
+// givepanel
+export const [isGivePanel, setGivePanel] = useRerender(false)
+
+export const [anoucement, setAnoucement] = useRerender([
+  {
+    id: 1,
+    from: 'Michael Turay',
+    message:
+      'Church has almost reached in finnishing of the building. Thanks to the ose pikin dem for unu support',
+    isRead: false,
+  },
+  {
+    id: 2,
+    from: 'Hawald Parker',
+    message:
+      'Youth will be having there monthly visitation for this month at Blessing Babao house. We pray God they have a safe trip and spend it God fearly.',
+    isRead: false,
+  },
+  {
+    id: 3,
+    from: 'Hawald Parker',
+    message:
+      "Our weekly Bible study will start soon. We pray God to see you all and have a wonderful knowledge on God's word",
+    isRead: true,
+  },
+])
+
+export const isUnreadCount = computed(() => {
+  return anoucement.value.filter((x) => !x.isRead).length
+})

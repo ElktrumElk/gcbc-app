@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { isUserLogin, showLoginPanel } from '@/context/general'
-import { setUserProfile } from '@/context/userProfile'
+import { avatarInitial, setUserProfile } from '@/context/userProfile'
 
 defineProps({
   handleProfileDisplay: Function,
@@ -16,14 +16,14 @@ defineProps({
       }
     "
   >
-    <span>M</span>
+    <span>{{ avatarInitial }}</span>
   </div>
 </template>
 
 <style scoped lang="css">
 .profile-img {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 4rem;
   display: flex;
   flex-direction: column;
