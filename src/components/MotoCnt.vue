@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import AboutButton from '@/subComponents/AboutButton.vue'
+import GiveButton from '@/subComponents/GiveButton.vue'
+</script>
+
 <template>
   <section class="m-sec">
     <div class="motive-cnt">
@@ -6,8 +11,8 @@
       <strong>A journey to the High Ground of Pleroma</strong>
 
       <div class="btn-cnt">
-        <button>Give</button>
-        <button>About us</button>
+        <GiveButton />
+        <AboutButton />
       </div>
     </div>
   </section>

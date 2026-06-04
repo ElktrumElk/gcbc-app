@@ -30,6 +30,7 @@ body.light {
   --global-component-bg-b: whitesmoke;
   --member-card-box-shadow: 0 0 0rem #ebebebeb, 0px 0 0rem #b2dbff;
   --member-card-box-shadow-hover: 0 0 2rem #ebebebeb, 0px 0 1rem #b2dbff;
+  --global-border-cl: 1px solid rgba(0, 166, 255, 0.401);
 }
 
 body {

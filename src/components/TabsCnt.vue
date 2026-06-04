@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { setAboutusPanel, setGivePanel } from '@/context/general'
+import AboutButton from '@/subComponents/AboutButton.vue'
+import GiveButton from '@/subComponents/GiveButton.vue'
 </script>
 
 <template>
@@ -7,8 +8,8 @@ import { setAboutusPanel, setGivePanel } from '@/context/general'
     <div></div>
 
     <div class="btn-cnt">
-      <button @click="() => setGivePanel?.(true)">Give</button>
-      <button @click="() => setAboutusPanel?.(true)">About us</button>
+      <GiveButton />
+      <AboutButton />
     </div>
   </div>
 </template>

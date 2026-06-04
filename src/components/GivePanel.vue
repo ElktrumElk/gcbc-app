@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import { splitNumber } from '@/extras/numberSpliter'
-import { anoucement, setAnoucement, setGivePanel } from '@/context/general'
+import {
+  anoucement,
+  isUserLogin,
+  setAnoucement,
+  setGivePanel,
+  showLoginPanel,
+} from '@/context/general'
 import { ref } from 'vue'
 import gAlert from '@/extras/alert'
 
@@ -9,10 +15,16 @@ const inp = ref<string[]>([])
 const handlePaymentInp = () => splitNumber(inp)
 
 const handleGive = () => {
+  if (!isUserLogin.value) {
+    showLoginPanel?.(true)
+    return
+  }
+
   if (Number(inp.value) === 0) {
     gAlert('Please value must not be less than 1')
     return
   }
+
   gAlert(
     `You have successfully donated ${inp.value} into the GCBC account. Thank you for this transaction and may God bless you`,
   )
@@ -143,7 +155,7 @@ document.addEventListener('keypress', (e) => {
   border: none;
   outline: none;
   font-weight: bolder;
-  color: rgb(228, 228, 228) !important;
+  color: var(--global-txt-cl) !important;
 }
 
 .payment-method {

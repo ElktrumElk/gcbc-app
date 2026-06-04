@@ -8,7 +8,7 @@ import { isUnreadCount, isUserLogin, showAnoucement, showLoginPanel } from '@/co
     <span
       :style="{
         background: 'blue',
-        display: isUnreadCount > 0 ? 'flex' : 'none',
+        display: isUserLogin && isUnreadCount > 0 ? 'flex' : 'none',
         padding: '.5rem',
         width: '10px',
         height: '10px',

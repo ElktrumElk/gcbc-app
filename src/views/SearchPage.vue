@@ -26,8 +26,6 @@ const searchData = computed(() => {
     teaching.title.toLowerCase().includes(searchQuery.value.toLowerCase()),
   )
 })
-
-
 </script>
 
 <template>
@@ -90,13 +88,21 @@ header {
 
 .input-cnt {
   display: flex;
-  border: 1px solid #444545;
   border-radius: 3rem;
   padding: 0.25rem;
   width: 100%;
-  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.406);
+  border: var(--global-border-cl);
+  transform: scale(1);
+  transition:
+    box-shadow 0.4s ease,
+    transform 1 ease;
 }
 
+.input-cnt:active {
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.406);
+  transform: scale(0.99);
+}
 input {
   display: flex;
   flex: 1;
@@ -130,8 +136,17 @@ input {
   flex-direction: column;
   cursor: pointer;
   gap: 0.5rem;
+  
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+  background: var(--global-component-bg);
+  transform: scale(1);
+  transition: trasnfor 0.4s ease;
 }
 
+.t:active {
+  transform: scale(0.9);
+}
 .img-cnt {
   width: 100%;
   aspect-ratio: 1 / 1; /* Ensures card images remain perfectly square */

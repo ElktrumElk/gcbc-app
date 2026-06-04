@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { anoucement, setAnoucement, showAnoucement, isUnreadCount } from '@/context/general'
+import { onDeactivated } from 'vue'
 
 const handleRead = (idx: number) => {
   setAnoucement(anoucement.value, (v) => {
@@ -13,6 +14,7 @@ const handleRead = (idx: number) => {
     <div class="anoucement-cnt">
       <div class="header">
         <h1>Anoucement</h1>
+
         <span
           :style="{
             display: isUnreadCount === 0 ? 'none' : 'flex',
@@ -29,6 +31,18 @@ const handleRead = (idx: number) => {
           }"
           >{{ isUnreadCount }}</span
         >
+
+        <div class="tools-cnt">
+          <span
+            v-on:click="
+              () => {
+                setAnoucement?.([])
+                onDeactivated(() => setAnoucement?.([]))
+              }
+            "
+            >Clear All</span
+          >
+        </div>
       </div>
 
       <div class="scroll-view">
@@ -98,6 +112,31 @@ const handleRead = (idx: number) => {
   padding: 0.4rem 0rem;
   gap: 0.5rem;
 }
+
+.tools-cnt {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+}
+
+.tools-cnt span {
+  display: flex;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  border: var(--global-border-cl);
+  color: var(--global-txt-cl);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transform: scale(1);
+  transition: transform 1s ease;
+}
+.tools-cnt span:active {
+  transform: scale(0.9);
+}
+h1 {
+  font-size: 1.1rem;
+  font-weight: bolder;
+}
 .scroll-view {
   flex: 1;
   width: 100%;
@@ -136,7 +175,6 @@ const handleRead = (idx: number) => {
 .info-cnt {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
 }
 
 .sender-name {
@@ -144,5 +182,8 @@ const handleRead = (idx: number) => {
 }
 .message-cnt {
   width: 100%;
+}
+.message-cnt p {
+  line-height: 20px;
 }
 </style>
